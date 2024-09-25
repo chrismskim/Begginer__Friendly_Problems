@@ -1,61 +1,51 @@
 import random
-
 import os
-
 import re
 
-os.system('cls' if os.name=='nt' else 'clear')
+# Clear the console
+os.system('cls' if os.name == 'nt' else 'clear')
 
-while (1 < 2):
+# Prompt user to start game or quit
+userChoice = input("Start game [s], quit [q]: ").lower()
 
-print ("\n")
+# Game loop
+while userChoice != 'q':
+    print("\nRock, Paper, Scissors - Shoot!")
 
-print ("Rock, Paper, Scissors - Shoot!")
+    # Prompt the user to choose R, P, or S
+    userChoice = input("Choose your weapon [R]ock, [P]aper, or [S]cissors: ").upper()
 
-userChoice = input("Choose your weapon [R]ock], [P]aper, or [S]cissors: ")
+    if not re.match("[RPS]", userChoice):
+        print("Please choose a valid option: [R]ock, [S]cissors, or [P]aper.")
+        continue
 
-if not re.match("[SsRrPp]", userChoice):
+    # Echo the user's choice
+    print(f"You chose: {userChoice}")
 
-print ("Please choose a letter:")
+    # Computer's random choice
+    choices = ['R', 'P', 'S']
+    opponentChoice = random.choice(choices)
 
-print ("[R]ock, [S]cissors or [P]aper.")
+    print(f"I chose: {opponentChoice}")
 
-continue
+    # Compare choices
+    if opponentChoice == userChoice:
+        print("Tie!")
 
-# Echo the user's choice
+    elif opponentChoice == 'R' and userChoice == 'S':
+        print("Rock beats scissors, I win!")
 
-print ("You chose: " + userChoice)
+    elif opponentChoice == 'S' and userChoice == 'P':
+        print("Scissors beats paper, I win!")
 
-choices = ['R', 'P', 'S']
+    elif opponentChoice == 'P' and userChoice == 'R':
+        print("Paper beats rock, I win!")
 
-opponenetChoice = random.choice(choices)
+    else:
+        print("You win!")
 
-print ("I chose: " + opponenetChoice)
+    # Prompt the user to play again or quit
+    userChoice = input("\nPlay again [s], quit [q]: ").lower()
 
-if opponenetChoice == str.upper(userChoice):
+print("Game over.")
 
-print ("Tie! ")
-
-#if opponenetChoice == str("R") and str.upper(userChoice) == "P"
-
-elif opponenetChoice == 'R' and userChoice.upper() == 'S':
-
-print ("Scissors beats rock, I win! ")
-
-continue
-
-elif opponenetChoice == 'S' and userChoice.upper() == 'P':
-
-print ("Scissors beats paper! I win! ")
-
-continue
-
-elif opponenetChoice == 'P' and userChoice.upper() == 'R':
-
-print ("Paper beat rock, I win!")
-
-continue
-
-else:
-
-print ("You win!")
